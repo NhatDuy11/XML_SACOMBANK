@@ -25,6 +25,7 @@ import java.util.regex.Pattern;
 
 public class test3_xml {
 
+
     public static void copyAttributeNode2Node(Node operationTag, Element insertRowElement) {
 
         NamedNodeMap attributes = operationTag.getAttributes();
@@ -42,6 +43,7 @@ public class test3_xml {
         String lUUID = String.format("%040d", new BigInteger(UUID.randomUUID().toString().replace("-", ""), 16));
         return lUUID;
     }
+    public static Map<String, Object> data;
 
 
 
@@ -50,6 +52,7 @@ public class test3_xml {
 
     public static void main(String[] args) {
         try {
+
             long startTime = System.nanoTime();
 
 
@@ -119,9 +122,19 @@ public class test3_xml {
             copyAttributeNode2Node(operTag, insertRowElement);
             targetDoc.appendChild(insertRowElement);
             NodeList colElements = doc.getElementsByTagName("col");
-            InputStream in = new FileInputStream("D:\\JAVA\\convertFormatXML\\src\\main\\java\\table_ATMLOG.yaml");
-            Yaml yaml = new Yaml();
-            Map<String, Object> data = yaml.load(in);
+//            InputStream in = new FileInputStream("D:\\JAVA\\convertFormatXML\\src\\main\\java\\table_ATMLOG.yaml");
+//            Yaml yaml = new Yaml();
+//
+//            Map<String, Object> data = yaml.load(in);
+
+            if (data == null) {
+
+                InputStream in = new FileInputStream("D:\\JAVA\\convertFormatXML\\src\\main\\java\\table_ATMLOG.yaml");
+                Yaml yaml = new Yaml();
+                data = yaml.load(in);
+                in.close(); // Close the stream after reading
+            }
+
             List<Map<String, Object>> tables = (List<Map<String, Object>>) ((List<Map<String, Object>>) data.get("database"));
             for (int i = 0; i < colElements.getLength(); i++) {
                 Element colElement = (Element) colElements.item(i);
