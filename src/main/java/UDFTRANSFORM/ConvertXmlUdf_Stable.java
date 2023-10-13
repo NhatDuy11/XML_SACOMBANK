@@ -90,7 +90,8 @@ public class ConvertXmlUdf_Stable {
           //  insertRowElement.setAttribute("hasLOBCols", "0");
             rowOpElement.appendChild(insertRowElement);
             NodeList colElements = doc.getElementsByTagName("col");
-            InputStream in = new FileInputStream("/tmp/ext/table_ATMLOG.yaml");
+//            InputStream in = new FileInputStream("/tmp/ext/table_ATMLOG.yaml");
+            InputStream in = new FileInputStream("/home/nhatduy/table_ATMLOG.yaml");
             Yaml yaml = new Yaml();
             Map<String, Object> data = yaml.load(in);
             List<Map<String, Object>> tables = (List<Map<String, Object>>) ((List<Map<String, Object>>) data.get("database"));

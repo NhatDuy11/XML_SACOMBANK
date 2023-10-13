@@ -154,8 +154,8 @@ public class test2_xml {
 
             System.out.println(convertedXml);
             long endTime = System.nanoTime();
-            double executionTimeMs = (endTime - startTime) / 1e6;
-
+           double executionTimeMs = (endTime - startTime) / 1e6;
+//
             System.out.println("Process Kafka:  " + executionTimeMs + " ms");
 
 

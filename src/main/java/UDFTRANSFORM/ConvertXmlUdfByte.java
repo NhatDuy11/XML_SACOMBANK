@@ -73,7 +73,8 @@ public class ConvertXmlUdfByte {
             rowOpElement.appendChild(insertRowElement);
 
             NodeList colElements = doc.getElementsByTagName("col");
-            InputStream in = new FileInputStream("/tmp/ext/table_ATMLOG.yaml");
+//            InputStream in = new FileInputStream("/tmp/ext/table_ATMLOG.yaml");
+            InputStream in = new FileInputStream("/home/nhatduy/table_ATMLOG.yaml");
             Yaml yaml = new Yaml();
             Map<String, Object> data = yaml.load(in);
             List<Map<String, Object>> tables = (List<Map<String, Object>>) ((List<Map<String, Object>>) data.get("database")).get(0).get("table");

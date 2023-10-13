@@ -62,34 +62,36 @@ public class test_version1 {
             Document targetDoc = targetBuilder.newDocument();
             Element operationElement = (Element) doc.getElementsByTagName("operation").item(0);
             System.out.println(operationElement);
-            String currentTs = operationElement.getAttribute("current_ts").replace("T", " ");
-            String ts = operationElement.getAttribute("ts");
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSSSSS");
-            LocalDateTime currentTsDateTime = LocalDateTime.parse(currentTs, formatter);
-            LocalDateTime tsDateTime = LocalDateTime.parse(ts, formatter);
-
-            double currentTsSeconds = currentTsDateTime.getSecond() + currentTsDateTime.getNano() / 1e9;
-            double tsSeconds = tsDateTime.getSecond() + tsDateTime.getNano() / 1e9;
-
-            double result = currentTsSeconds - tsSeconds;
-            System.out.println("result : " + result);
-
-            System.out.println(ts);
-            System.out.println(currentTs);
+//            String currentTs = operationElement.getAttribute("current_ts").replace("T", " ");
+//            String ts = operationElement.getAttribute("ts");
+//            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSSSSS");
+//            LocalDateTime currentTsDateTime = LocalDateTime.parse(currentTs, formatter);
+//            LocalDateTime tsDateTime = LocalDateTime.parse(ts, formatter);
+//
+//            double currentTsSeconds = currentTsDateTime.getSecond() + currentTsDateTime.getNano() / 1e9;
+//            double tsSeconds = tsDateTime.getSecond() + tsDateTime.getNano() / 1e9;
+//
+//            double result = currentTsSeconds - tsSeconds;
+//            System.out.println("result : " + result);
+//
+//            System.out.println(ts);
+//            System.out.println(currentTs);
 
             Element insertRowElement = targetDoc.createElement("operation");
 
-            System.out.println("TS : " + ts);
+//            System.out.println("TS : " + ts);
             String rowOpAttr = intenSeq();
 
 //            System.out.println(bigint);
             insertRowElement.setAttribute("intentSEQ", rowOpAttr);
-            double kafkprocess = result;
-            operationElement.setAttribute("processKafka", String.valueOf(kafkprocess));
+//            double kafkprocess = result;
+//            operationElement.setAttribute("processKafka", String.valueOf(kafkprocess));
             copyAttributeNode2Node(operTag, insertRowElement);
             targetDoc.appendChild(insertRowElement);
             NodeList colElements = doc.getElementsByTagName("col");
-            InputStream in = new FileInputStream("D:\\JAVA\\convertFormatXML\\src\\main\\java\\table_ATMLOG.yaml");
+//            InputStream in = new FileInputStream("D:\\JAVA\\convertFormatXML\\src\\main\\java\\table_ATMLOG.yaml");
+            InputStream in = new FileInputStream("/home/nhatduy/table_ATMLOG.yaml");
+
             Yaml yaml = new Yaml();
             Map<String, Object> data = yaml.load(in);
             List<Map<String, Object>> tables = (List<Map<String, Object>>) ((List<Map<String, Object>>) data.get("database"));

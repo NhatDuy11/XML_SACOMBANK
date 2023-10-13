@@ -122,18 +122,19 @@ public class test3_xml {
             copyAttributeNode2Node(operTag, insertRowElement);
             targetDoc.appendChild(insertRowElement);
             NodeList colElements = doc.getElementsByTagName("col");
-//            InputStream in = new FileInputStream("D:\\JAVA\\convertFormatXML\\src\\main\\java\\table_ATMLOG.yaml");
-//            Yaml yaml = new Yaml();
+            InputStream in = new FileInputStream("D:\\JAVA\\convertFormatXML\\src\\main\\java\\table_ATMLOG.yaml");
+            Yaml yaml = new Yaml();
+
+            Map<String, Object> data = yaml.load(in);
+
+//            if (data == null) {
 //
-//            Map<String, Object> data = yaml.load(in);
+//                InputStream in = new FileInputStream("D:\\JAVA\\convertFormatXML\\src\\main\\java\\table_ATMLOG.yaml");
+//                Yaml yaml = new Yaml();
+//                data = yaml.load(in);
+//                in.close(); // Close the stream after reading
+//            }
 
-            if (data == null) {
-
-                InputStream in = new FileInputStream("D:\\JAVA\\convertFormatXML\\src\\main\\java\\table_ATMLOG.yaml");
-                Yaml yaml = new Yaml();
-                data = yaml.load(in);
-                in.close(); // Close the stream after reading
-            }
 
             List<Map<String, Object>> tables = (List<Map<String, Object>>) ((List<Map<String, Object>>) data.get("database"));
             for (int i = 0; i < colElements.getLength(); i++) {
@@ -189,7 +190,6 @@ public class test3_xml {
                         }
                     }
                 }
-
             }
             TransformerFactory transformerFactory = TransformerFactory.newInstance();
             Transformer transformer = transformerFactory.newTransformer();
